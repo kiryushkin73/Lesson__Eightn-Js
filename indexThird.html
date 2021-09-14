@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        width: 100%;
+      }
+      #blueRect {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="blueRect"></div>
+
+    <script>
+      // let active = false;
+      // let elem;
+      // function down(e) {
+      //   active = true;
+      // }
+      // function up(e) {
+      //   active = false;
+      // }
+      // function move(e) {
+      //   if (!active) return;
+      //   elem.style.left = e.x - 25 + 'px';
+      //   elem.style.top = e.y - 25 + 'px';
+      // }
+      function moveRect(e) {
+        let blueRect = document.getElementById('blueRect');
+
+        let cs = window.getComputedStyle(blueRect);
+
+        let left = parseInt(cs.marginLeft);
+        let top = parseInt(cs.marginTop);
+
+        switch (e.key) {
+          case 'ArrowLeft':
+            if (left > 0) blueRect.style.marginLeft = left - 10 + 'px';
+            break;
+          case 'ArrowUp':
+            if (top > 0) blueRect.style.marginTop = top - 10 + 'px';
+            break;
+
+          case 'ArrowRight':
+            if (left < document.documentElement.clientWidth - 100)
+              blueRect.style.marginLeft = left + 10 + 'px';
+            break;
+          case 'ArrowDown':
+            if (top < document.documentElement.clientHeight - 100)
+              blueRect.style.marginTop = top + 10 + 'px';
+            break;
+        }
+      }
+      addEventListener('keydown', moveRect);
+    </script>
+  </body>
+</html>

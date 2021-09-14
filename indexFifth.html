@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        border: 3px solid black;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+
+        margin-top: 20%;
+        margin-bottom: 20%;
+      }
+      .Arrow {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: black;
+        left: 70px;
+        bottom: 35px;
+        border-radius: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="Arrow"></div>
+    </div>
+    <script>
+      document.onmousemove = function (event) {
+        let x = event.x - 617;
+        let y = event.y - 262;
+        console.log(x + ' ' + y);
+        document.querySelector('.content').style.transform =
+          'rotate(' + 57.2958 * arcctg(x, y) + 'deg)';
+        function arcctg(x, y) {
+          if (x > 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
+          if (x < 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
+          if (x < 0 && y < 0) return Math.PI + Math.atan(y / x);
+          if (x > 0 && y < 0)
+            return (3 * Math.PI) / 2 + Math.abs(Math.atan(x / y));
+        }
+      };
+    </script>
+  </body>
+</html>

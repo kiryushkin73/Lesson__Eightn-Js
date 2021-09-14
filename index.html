@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <style>
+      body {
+        color: #666666;
+      }
+      a {
+        color: #666666;
+      }
+      .nav-tabs {
+        display: flex;
+      }
+      .nav-tab {
+        font-size: 20px;
+        margin-right: 10px;
+        padding: 20px 30px 20px 30px;
+        border: 2px solid#eeeeee;
+        border-bottom: 0;
+        text-decoration: none;
+      }
+      .nav-tab.active {
+        background: #eeeeee;
+        cursor: default;
+      }
+      .tab-content {
+        font-size: 20px;
+        background: #eeeeee;
+      }
+      .tab-pane {
+        display: none;
+        padding: 30px;
+      }
+      .tab-pane.active {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-tabs">
+      <a href="#" data-tab="1" class="nav-tab active">Tab 1</a>
+      <a href="#" data-tab="2" class="nav-tab">Tab 2</a>
+      <a href="#" data-tab="3" class="nav-tab">Tab 3</a>
+    </div>
+    <div class="tab-content">
+      <div data-tab-content="1" class="tab-pane active">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
+        deleniti consequatur recusandae quos autem eius labore optio sit
+        adipisci odio delectus harum, inventore sapiente, incidunt ipsum
+        architecto eligendi cum fuga.
+      </div>
+      <div data-tab-content="2" class="tab-pane">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, minima!
+      </div>
+      <div data-tab-content="3" class="tab-pane">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero id
+        veritatis in deleniti sequi! Aut dolorem soluta laborum praesentium
+        quaerat rem numquam commodi ducimus! Quia, eos dicta? Aspernatur iste
+        sint ipsum voluptate, officia obcaecati accusamus?
+      </div>
+    </div>
+  </body>
+  <script>
+    let tabNavs = document.querySelectorAll('.nav-tab');
+    console.log(tabNavs);
+    let tabPanes = document.querySelectorAll('.tab-pane');
+    console.log(tabPanes);
+
+    for (let i = 0; i < tabNavs.length; i++) {
+      tabNavs[i].addEventListener('click', function (e) {
+        e.preventDefault();
+
+        let activeTabAttr = e.target.getAttribute('data-tab');
+
+        for (let j = 0; j < tabNavs.length; j++) {
+          let contentAttr = tabPanes[j].getAttribute('data-tab-content');
+          if (activeTabAttr === contentAttr) {
+            tabNavs[j].classList.add('active');
+            tabPanes[j].classList.add('active');
+          } else {
+            tabNavs[j].classList.remove('active');
+            tabPanes[j].classList.remove('active');
+          }
+        }
+      });
+    }
+  </script>
+</html>
